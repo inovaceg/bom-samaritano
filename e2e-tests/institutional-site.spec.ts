@@ -26,6 +26,7 @@ test("navega no site, abre a galeria e prepara contato pelo WhatsApp", async ({ 
   await expect(whatsappPage).toHaveURL(/api\.whatsapp\.com\/send\/\?phone=5532988397887&text=/);
   await expect(whatsappPage.getByText(/Tutor: Ana/)).toBeVisible();
   await expect(page.getByRole("status")).toContainText("WhatsApp foi aberto");
-  await expect(page.getByRole("link", { name: "Ligue agora" })).toHaveAttribute("href", "tel:+553232127252");
-  await expect(page.getByRole("link", { name: "Abrir no Google Maps" })).toHaveAttribute("href", /google\.com\/maps\/search/);
+  await expect(page.getByRole("link", { name: "Ligar agora" }).first()).toHaveAttribute("href", "tel:+553232127252");
+  await expect(page.getByRole("link", { name: "Abrir rota", exact: true })).toHaveAttribute("href", /google\.com\/maps\/search/);
+  await expect(page.getByRole("link", { name: "Conversar pelo WhatsApp" })).toHaveAttribute("href", "https://wa.me/5532988397887");
 });
