@@ -14,7 +14,8 @@ test("navega no site, abre a galeria e prepara contato pelo WhatsApp", async ({ 
   await page.keyboard.press("Escape");
 
   await page.getByRole("link", { name: "Contato", exact: true }).click();
-  await expect(page.getByRole("link", { name: "Fale com o hospital pelo WhatsApp" })).toHaveAttribute("href", "https://wa.me/5532988397887");
+  await expect(page.getByRole("link", { name: "Fale com o hospital pelo WhatsApp" })).toHaveAttribute("href", /https:\/\/wa\.me\/553232127252\?text=/);
+  await expect(page.getByRole("link", { name: "Instagram oficial @bomsamaritano_jf" })).toHaveAttribute("href", "https://www.instagram.com/bomsamaritano_jf/");
   await page.getByLabel("Nome do tutor").fill("Ana");
   await page.getByLabel("Telefone", { exact: true }).fill("32999990000");
   await page.getByLabel("Nome do animal").fill("Luna");
@@ -23,10 +24,11 @@ test("navega no site, abre a galeria e prepara contato pelo WhatsApp", async ({ 
   const whatsappPagePromise = page.waitForEvent("popup");
   await page.getByRole("button", { name: "Enviar mensagem pelo WhatsApp" }).click();
   const whatsappPage = await whatsappPagePromise;
-  await expect(whatsappPage).toHaveURL(/api\.whatsapp\.com\/send\/\?phone=5532988397887&text=/);
+  await expect(whatsappPage).toHaveURL(/api\.whatsapp\.com\/send\/\?phone=553232127252&text=/);
+  await expect(whatsappPage.getByText(/Olá! Conheci o Centro Médico Veterinário Bom Samaritano pelo site e gostaria de mais informações\./)).toBeVisible();
   await expect(whatsappPage.getByText(/Tutor: Ana/)).toBeVisible();
   await expect(page.getByRole("status")).toContainText("WhatsApp foi aberto");
   await expect(page.getByRole("link", { name: "Ligar agora" }).first()).toHaveAttribute("href", "tel:+553232127252");
   await expect(page.getByRole("link", { name: "Abrir rota", exact: true })).toHaveAttribute("href", /google\.com\/maps\/search/);
-  await expect(page.getByRole("link", { name: "Conversar pelo WhatsApp" })).toHaveAttribute("href", "https://wa.me/5532988397887");
+  await expect(page.getByRole("link", { name: "Conversar pelo WhatsApp" })).toHaveAttribute("href", /https:\/\/wa\.me\/553232127252\?text=/);
 });
