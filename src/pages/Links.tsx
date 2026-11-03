@@ -8,7 +8,7 @@ export default function Links() {
     <div aria-hidden="true" className="pointer-events-none absolute -left-32 -top-36 h-96 w-96 rounded-full bg-blue-100/70 blur-3xl" />
     <div aria-hidden="true" className="pointer-events-none absolute -bottom-40 -right-28 h-[26rem] w-[26rem] rounded-full bg-sky-100/70 blur-3xl" />
     <section className="relative z-10 w-full max-w-md text-center">
-      <img src="/logo-bom-samaritano.png" alt="Logo do Centro Médico Veterinário Bom Samaritano" className="mx-auto h-32 w-auto object-contain" />
+      <img src="/logo-bom-samaritano-links.png" alt="Logo do Centro Médico Veterinário Bom Samaritano" className="mx-auto h-36 w-full max-w-[18rem] object-contain sm:h-40" />
       <h1 className="mt-5 text-2xl font-bold leading-tight text-[#123E83]">Centro Médico Veterinário<br/>Bom Samaritano</h1>
       <p className="mt-3 text-sm leading-6 text-slate-600">Cuidado veterinário 24 horas em Juiz de Fora.</p>
       <div className="mt-8 space-y-4">
